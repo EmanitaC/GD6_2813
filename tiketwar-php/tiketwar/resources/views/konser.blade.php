@@ -3,13 +3,23 @@
 @section('title', 'Daftar Konser')
 
 @section('content')
-<h1 class="mb-3">Daftar Konser</h1>
+<h1 class="mb-3">{{ $judul ?? 'Daftar Konser' }}</h1>
+
+<div class="mb-3">
+    <strong>Filter Kota: </strong>
+    <a href="{{ route('konser.kota', ['kota' => 'Jakarta']) }}" class="btn btn-sm btn-outline-primary">Jakarta</a>
+    <a href="{{ route('konser.kota', ['kota' => 'Yogyakarta']) }}" class="btn btn-sm btn-outline-primary">Yogyakarta</a>
+    <a href="{{ route('konser.kota', ['kota' => 'Bandung']) }}" class="btn btn-sm btn-outline-primary">Bandung</a>
+    <a href="{{ route('konser.index') }}" class="btn btn-sm btn-outline-secondary">Semua Kota</a>
+</div>
+
 <table class="table table-bordered">
     <thead class="table-light">
         <tr>
             <th>No</th>
             <th>Konser</th>
             <th>Kota</th>
+            <th>Tanggal</th>
             <th>Harga</th>
             <th>Sisa</th>
             <th>Status</th>
@@ -20,8 +30,9 @@
         @forelse ($daftarkonser as $id => $konser)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $konser['nama'] }}</td>
+            <td class="{{ $konser['sisa'] == 0 ? 'sold-out' : '' }}">{{ $konser['nama'] }}</td>
             <td>{{ $konser['kota'] }}</td>
+            <td>{{ date('d-m-Y', strtotime($konser['tanggal'])) }}</td>
             <td>Rp{{ number_format($konser['harga'], 0, ',', '.') }}</td>
             <td>{{ $konser['sisa'] }}</td>
             <td>
@@ -39,7 +50,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="7" class="text-center">Belum ada konser.</td>
+            <td colspan="8" class="text-center">Belum ada konser.</td>
         </tr>
         @endforelse
     </tbody>
