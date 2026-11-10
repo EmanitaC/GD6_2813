@@ -21,6 +21,23 @@ class KonserController extends Controller
         return view('konser-detail', compact('konser'));
     }
 
+    public function store(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'promotor_id' => ['required', 'exists:promotors,id'],
+            'nama'        => ['required', 'string', 'max:255'],
+            'kota'        => ['required', 'string', 'max:100'],
+            'harga'       => ['required', 'integer', 'min:0'],
+            'sisa'        => ['required', 'integer', 'min:0'],
+            'tanggal'     => ['required', 'date'],
+        ]);
+
+        Konser::create($data);
+
+        return redirect()->route('konser.index')
+            ->with('success', 'Konser berhasil ditambahkan.');
+    }
+
     // BARU: menampilkan form ubah
     public function edit($id): View
     {
