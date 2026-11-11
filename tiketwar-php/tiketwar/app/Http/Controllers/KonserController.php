@@ -10,10 +10,16 @@ use Illuminate\View\View; // BARU
 
 class KonserController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $daftarkonser = Konser::with('promotor')->orderBy('tanggal')->get();
-        return view('konser', compact('daftarkonser'));
+        $daftarkonser = Konser::with('promotor')
+            ->when($request->query('kota'), fn ($query, $kota) => $query->where('kota', $kota))
+            ->orderBy('tanggal')
+            ->get();
+
+        $daftarKota = Konser::select('kota')->distinct()->orderBy('kota')->pluck('kota');
+
+        return view('konser', compact('daftarkonser', 'daftarKota'));
     }
 
     public function show($id): View
@@ -29,7 +35,7 @@ class KonserController extends Controller
         return view('konser-create', compact('daftarPromotor'));
     }
 
-    // BARU: menyimpan data dari form[cite: 21]
+    // BARU: menyimpan data dari form
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -39,6 +45,7 @@ class KonserController extends Controller
             'harga'       => ['required', 'integer', 'min:0'],
             'sisa'        => ['required', 'integer', 'min:0'],
             'tanggal'     => ['required', 'date'],
+            'deskripsi' => ['nullable', 'string'],
         ]);
 
         Konser::create($data);

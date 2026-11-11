@@ -1,16 +1,8 @@
 <div class="mb-3">
-    <label for="promotor_id" class="form-label">Promotor</label>
-    <select name="promotor_id" id="promotor_id"
-            class="form-select @error('promotor_id') is-invalid @enderror">
-        <option value="">-- Pilih promotor --</option>
-        @foreach ($daftarPromotor as $promotor)
-            <option value="{{ $promotor->id }}"
-                @selected(old('promotor_id', $konser->promotor_id ?? '') == $promotor->id)>
-                {{ $promotor->nama }}
-            </option>
-        @endforeach
-    </select>
-    @error('promotor_id')
+    <label for="deskripsi" class="form-label">Deskripsi (Opsional)</label>
+    <textarea name="deskripsi" id="deskripsi" rows="3"
+              class="form-control @error('deskripsi') is-invalid @enderror">{{ old('deskripsi', $konser->deskripsi ?? '') }}</textarea>
+    @error('deskripsi')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
