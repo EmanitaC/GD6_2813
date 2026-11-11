@@ -12,12 +12,10 @@
         <p class="text-muted mb-1">Kota: {{ $konser->kota }}</p>
         <p class="mb-1">Tanggal: {{ date('d-m-Y', strtotime($konser->tanggal)) }}</p> {{-- BARU --}}
         <p class="mb-1">Harga: Rp{{ number_format($konser->harga, 0, ',', '.') }}</p>
-        <p>Sisa tiket: {{ $konser->sisa }}</p>
+        <p class="mb-1">Sisa tiket: {{ $konser->sisa }}</p>
 
-        @if ($konser->sisa > 0)
-            <button class="btn btn-primary">War Tiket Sekarang</button>
-        @else
-            <button class="btn btn-secondary" disabled>Sold Out</button>
+        @if (!empty($konser->deskripsi))
+            <p class="mt-3"><strong>Deskripsi:</strong><br>{{ $konser->deskripsi }}</p>
         @endif
     </div>
 </div>
