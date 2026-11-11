@@ -17,3 +17,9 @@ Route::post('/konser', [KonserController::class, 'store'])
 
 Route::get('/konser/{id}', [KonserController::class, 'show'])
     ->whereNumber('id')->name('konser.detail');
+Route::get('/konser/{id}/edit', [KonserController::class, 'edit'])
+    ->whereNumber('id')->name('konser.edit'); // BARU
+Route::put('/konser/{id}', [KonserController::class, 'update'])
+    ->whereNumber('id')->name('konser.update'); // BARU
+Route::delete('/konser/{id}', [KonserController::class, 'destroy'])
+    ->whereNumber('id')->name('konser.destroy');
