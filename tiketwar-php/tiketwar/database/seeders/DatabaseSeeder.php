@@ -69,5 +69,7 @@ class DatabaseSeeder extends Seeder
             'sisa' => 60,
             'tanggal' => '2027-01-30',
         ]);
+
+        $this->call(PesananSeeder::class);
     }
 }

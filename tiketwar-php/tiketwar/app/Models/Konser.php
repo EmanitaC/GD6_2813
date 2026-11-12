@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Konser extends Model
 {
@@ -21,4 +22,10 @@ class Konser extends Model
     {
         return $this->belongsTo(Promotor::class);
     }
+
+    public function pesanans(): HasMany // BARU
+    { // BARU
+        return $this->hasMany(Pesanan::class); // BARU
+    } // BARU
+
 }
