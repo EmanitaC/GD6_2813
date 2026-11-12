@@ -10,7 +10,7 @@ class PesananSeeder extends Seeder
 {
     public function run(): void
     {
-        $coldplay = $this->cariKonser('Coldplay - Music of the Spheres');
+        $coldplay = $this->cariKonser('Coldplay Music of the Spheres');
         $dewa = $this->cariKonser('Dewa 19 Pesta Rakyat');
         $pantai = $this->cariKonser('Festival Musik Pantai');
         $akustik = $this->cariKonser('Malam Akustik Kota');

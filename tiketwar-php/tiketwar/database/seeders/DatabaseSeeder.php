@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'harga' => 1500000,
             'sisa' => 25,
             'tanggal' => '2027-03-15',
+            'deskripsi' => 'tes',
         ]);
 
         Konser::create([
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             'harga' => 1200000,
             'sisa' => 0,
             'tanggal' => '2027-04-02',
+            'deskripsi' => 'tes',
         ]);
 
         Konser::create([
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
             'harga' => 450000,
             'sisa' => 120,
             'tanggal' => '2027-02-20',
+            'deskripsi' => 'tes',
         ]);
 
         Konser::create([
@@ -59,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'harga' => 600000,
             'sisa' => 85,
             'tanggal' => '2027-05-10',
+            'deskripsi' => 'tes',
         ]);
 
         Konser::create([
@@ -68,6 +72,7 @@ class DatabaseSeeder extends Seeder
             'harga' => 250000,
             'sisa' => 60,
             'tanggal' => '2027-01-30',
+            'deskripsi' => 'tes',
         ]);
 
         $this->call(PesananSeeder::class);
