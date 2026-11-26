@@ -7,7 +7,6 @@ use App\Models\Pesanan;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
@@ -25,17 +24,6 @@ class LaporanController extends Controller
         return view('laporan', compact(
             'daftarPesanan', 'totalPesanan', 'pendapatan', 'perStatus'
         ));
-    }
-
-    public function pdf(Request $request) // BARU
-    {
-        $daftarPesanan = $this->pesananTerfilter($request)->latest()->get(); // BARU
-        $pendapatan = $daftarPesanan->where('status', Pesanan::LUNAS)->sum('total'); // BARU
-
-        $pdf = Pdf::loadView('laporan-pdf', compact('daftarPesanan', 'pendapatan')) // BARU
-            ->setPaper('a4', 'portrait'); // BARU
-
-        return $pdf->download('laporan-pesanan.pdf'); // BARU
     }
 
     // Satu sumber filter untuk dashboard, PDF, dan (nanti) CSV.

@@ -6,6 +6,7 @@ use App\Http\Controllers\PromotorController;
 use App\Models\Konser;
 use App\Models\Promotor;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     $jumlahKonser = Konser::count();
@@ -54,5 +55,5 @@ Route::patch('/pesanan/{pesanan}/bayar', [PesananController::class, 'bayar'])
     ->whereNumber('pesanan')->name('pesanan.bayar');
 Route::patch('/pesanan/{pesanan}/batal', [PesananController::class, 'batal'])
     ->whereNumber('pesanan')->name('pesanan.batal');
-Route::get('/laporan/pdf', [LaporanController::class, 'pdf']) // BARU
-    ->name('laporan.pdf');
+Route::get('/laporan', [LaporanController::class, 'index']) // BARU
+    ->name('laporan.index'); // BARU
