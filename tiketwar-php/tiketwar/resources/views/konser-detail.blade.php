@@ -17,7 +17,8 @@
         @if (!empty($konser->deskripsi))
             <p class="mt-3"><strong>Deskripsi:</strong><br>{{ $konser->deskripsi }}</p>
         @endif
-        
+        <div>
+
         <div class="mt-3">
             @if ($konser->sisa > 0)
                 <a href="{{ route('pesanan.create', $konser) }}"
@@ -26,6 +27,7 @@
                 <button class="btn btn-secondary" disabled>Sold Out</button>
             @endif
         </div>
+        
     </div>
 </div>
 @endsection
